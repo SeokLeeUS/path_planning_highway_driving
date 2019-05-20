@@ -94,3 +94,12 @@ if (prev_size > 0)
 
 ## Example of cost function:
 ![cost_function](/path_planning_figure/cost_function.png)
+
+
+|COST FUNCTION NUMBER                                            |VERBAL DESCRIPTION|
+|:---                                                            |:-                  |
+|1|Penalizes trajectories that attempt to accelerate at a rate which is not possible for the vehicle|
+|2|Penalizes trajectories that drive off the road|
+|3|Penalizes trajectories that exceed the speed limit|
+|4|Penalizes trajectories that do not stay near the center of the lane. 
+|5|Rewards trajectories that stay near the target lane. 
