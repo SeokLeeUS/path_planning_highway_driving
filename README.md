@@ -14,9 +14,54 @@ CRITERIA                                                        |MEETS SPECIFICA
 |~Max Acceleration and Jerk are not Exceeded.~|~The car does not exceed a total acceleration of 10 m/s^2 and a jerk of 10 m/s^3.~|
 |~Car does not have collisions.~|~The car must not come into contact with any of the other cars on the road.~|  
 |~The car stays in its lane, except for the time between changing lanes.~|~The car doesn't spend more than a 3 second length out side the lane lanes during changing lanes, and every other time the car stays inside one of the 3 lanes on the right hand side of the road.~|
-|The car is able to change lanes.|The car is able to smoothly change lanes when it makes sense to do so, such as when behind a slower moving car and an adjacent lane is clear of other traffic.|
 
 ## Remaining work:
 |CRITERIA                                                        |MEETS SPECIFICATIONS|
 |:---                                                            |:-                  |
 |The car is able to change lanes.|The car is able to smoothly change lanes when it makes sense to do so, such as when behind a slower moving car and an adjacent lane is clear of other traffic.|
+
+## Resource to tackle the remaining work:
+
+So far, the below is the code to change the lane to the left when there's a vehicle in front of my car:
+```
+if (prev_size > 0)
+							{
+								car_s = end_path_s;
+							}
+
+							bool too_close = false;
+							for (int i = 0; i < sensor_fusion.size(); i++)
+							{
+								//car is in my lane
+								float d = sensor_fusion[i][6];
+								if (d < (2 + 4 * lane + 2) && d >(2 + 4 * lane - 2))
+								{
+									double vx = sensor_fusion[i][3]; // the vehicle speed in x coordinate when the vehicle is on my lane 
+									double vy = sensor_fusion[i][4]; // the vehicle speed in y coordinate when the vehicle is on my lane
+									double check_speed = sqrt(vx * vx + vy * vy); // absolute vehicle speed 
+									double check_car_s = sensor_fusion[i][5];
+									check_car_s += ((double)prev_size * .02 * check_speed); // project next s point 
+									// if the car is in front of me and the gap is less than 30 meter, 
+									if ((check_car_s > car_s) && ((check_car_s - car_s) < 30))
+									{
+										//ref_vel = 29.5;
+										too_close = true;
+										if (lane > 0)
+										{
+											lane = 0; // makes the lane change to left hand side(lane(0): d= 2 for middle waypoint of left lane
+											//lane =1; d=4 for middle waypoint of the middle lane. 
+										}
+
+									}
+								}
+							}
+
+							if (too_close)
+							{
+								ref_vel -= .224;
+							}
+							else if (ref_vel < 49.5)
+							{
+								ref_vel += .224;
+							}
+```
