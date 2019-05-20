@@ -94,14 +94,6 @@ if (prev_size > 0)
 
 ## Example of cost function:
 
-1. { 
-1
-0
-​	  
-s
-¨
- ≥a_max
-s
-¨
- <a_max
-​	
+1. { 1​	  s¨ ≥a_max
+     0​	  s¨ <a_max
+	
