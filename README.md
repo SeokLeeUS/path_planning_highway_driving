@@ -90,3 +90,5 @@ if (prev_size > 0)
 
 
 ### 2. cost function: 
+![FSM_cost_function_speed](/path_planning_figure/FSM_cost_func_speed_penalty.png)
+
