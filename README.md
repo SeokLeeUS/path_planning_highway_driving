@@ -22,7 +22,7 @@ CRITERIA                                                        |MEETS SPECIFICA
 
 ## Resource to tackle the remaining work:
 
-So far, the below is the code to change the lane to the left when there's a vehicle in front of my car:
+- So far, the below is the code to change the lane to the left when there's a vehicle in front of my car:
 ```
 if (prev_size > 0)
 							{
@@ -65,3 +65,11 @@ if (prev_size > 0)
 								ref_vel += .224;
 							}
 ```
+- Udacity instructor alluded to utilize the following to determine the next lane change from the walkthrough video clip:
+1. (good) cost function per lane (or finite state machine) to determine lane change better or stay in the lane.Hybrid A* is not a recommended method to determine the optimum lane. 
+2. Try to look into 5 second in the future to find what the best lane would be. 
+3. smoothing the path is done via spline function. 
+4. look for behavioral planning quiz/ Gaussian Naive classifier as a reference to determine where to be in the future.
+5. Utilize Frenet coordinates, path smoothing via spline, then finite state machine to consider what maneuver the driver should take.  
+6. Try to look for helper function which is not used in main.cpp during walkthrough to see if how it can be useful for the lane change. 
+
