@@ -15,3 +15,8 @@ CRITERIA                                                        |MEETS SPECIFICA
 |~Car does not have collisions.~|~The car must not come into contact with any of the other cars on the road.~|  
 |~The car stays in its lane, except for the time between changing lanes.~|~The car doesn't spend more than a 3 second length out side the lane lanes during changing lanes, and every other time the car stays inside one of the 3 lanes on the right hand side of the road.~|
 |The car is able to change lanes.|The car is able to smoothly change lanes when it makes sense to do so, such as when behind a slower moving car and an adjacent lane is clear of other traffic.|
+
+## Remaining work:
+|CRITERIA                                                        |MEETS SPECIFICATIONS|
+|:---                                                            |:-                  |
+|The car is able to change lanes.|The car is able to smoothly change lanes when it makes sense to do so, such as when behind a slower moving car and an adjacent lane is clear of other traffic.|
