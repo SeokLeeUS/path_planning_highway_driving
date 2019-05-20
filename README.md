@@ -7,9 +7,6 @@ Udacity self driving car nano degree project #6
 - how to reduce jerk at the cold start
 - how to reduce the vehicle speed when facing the front car to avoid collision. 
 ## Project rubrics:
-CRITERIA | MEETS SPECIFICATIONS 
-
-
 CRITERIA                                                        |MEETS SPECIFICATIONS|
 :---                                                            |:-                  |
 The car is able to drive at least 4.32 miles without incident.. | The top right screen of the simulator shows the current/best miles driven without incident. Incidents include exceeding acceleration/jerk/speed, collision, and driving outside of the lanes. Each incident case is also listed below in more detail.|
