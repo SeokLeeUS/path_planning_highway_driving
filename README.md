@@ -73,3 +73,19 @@ if (prev_size > 0)
 5. Utilize Frenet coordinates, path smoothing via spline, then finite state machine to consider what maneuver the driver should take.  
 6. Try to look for helper function which is not used in main.cpp during walkthrough to see if how it can be useful for the lane change. 
 
+
+## Skill gap
+1. finite state machine 
+2. cost function 
+3. how to utilize Finite State Machine (FSM) (or cost function) for lane change maneuver when necessary. 
+
+## References:
+
+### 1. FSM
+
+![FSM strength_weakness](/path_planning_figure/finite_state_machine.png)
+
+
+
+
+2. cost function: 
