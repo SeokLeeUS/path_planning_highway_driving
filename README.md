@@ -85,6 +85,7 @@ if (prev_size > 0)
 
 ![FSM strength_weakness](/path_planning_figure/finite_state_machine.png)
 ![FSM_highway](/path_planning_figure/finite_state_machine_highway.png)
+![FSM_transition_function](/path_planning_figure/FSM_transition_function.png)
 
 
 
