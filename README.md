@@ -84,8 +84,8 @@ if (prev_size > 0)
 ### 1. FSM
 
 ![FSM strength_weakness](/path_planning_figure/finite_state_machine.png)
+![FSM_highway](/path_planning_figure/finite_state_machine_highway.png)
 
 
 
-
-2. cost function: 
+### 2. cost function: 
