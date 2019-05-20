@@ -9,7 +9,6 @@ Udacity self driving car nano degree project #6
 ## Project rubrics:
 CRITERIA                                                        |MEETS SPECIFICATIONS|
 :---                                                            |:-                  |
-The car is able to drive at least 4.32 miles without incident.. | The top right screen of the simulator shows the current/best miles driven without incident. Incidents include exceeding acceleration/jerk/speed, collision, and driving outside of the lanes. Each incident case is also listed below in more detail.|
 The car is able to drive at least 4.32 miles without incident.. | The top right screen of the simulator shows the current/best miles driven without incident. Incidents include exceeding acceleration/jerk/speed, collision, and driving outside of the lanes. Each incident case is also listed below in more detail.                                                     |
 The car drives according to the speed limit.                    |The car doesn't drive faster than the speed limit. Also the car isn't driving much slower than speed limit unless obstructed by traffic.                    |
 Max Acceleration and Jerk are not Exceeded.                     |The car does not exceed a total acceleration of 10 m/s^2 and a jerk of 10 m/s^3.                                                                                |
