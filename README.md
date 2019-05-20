@@ -93,7 +93,4 @@ if (prev_size > 0)
 ![FSM_cost_function_speed](/path_planning_figure/FSM_cost_func_speed_penalty.png)
 
 ## Example of cost function:
-
-1. { 1​	  s¨ ≥a_max
-     0​	  s¨ <a_max
-	
+![cost_function](/path_planning_figure/cost_function.png)
