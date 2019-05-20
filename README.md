@@ -1,6 +1,8 @@
 # path_planning_highway_driving
 Udacity self driving car nano degree project #6
-## Reference: Udacity's path planning walkthrough session: https://www.youtube.com/watch?v=7sI3VHFPP0w&feature=youtu.be
+## Reference: 
+- Udacity's path planning walkthrough session: https://www.youtube.com/watch?v=7sI3VHFPP0w&feature=youtu.be
+- Udacity's path planning course material (all snapshots appeared in this section are from the course material)
 ## The above reference walked me through the following points:
 - how to make the car goes straight
 - how to make the car follow the path 
