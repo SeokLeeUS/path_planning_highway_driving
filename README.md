@@ -184,7 +184,7 @@ each corner case displays the flag (lane_flag) to know where the logic is staged
 ```
 ### 4. result:
 
-![FSM_transition_function](/path_planning_figure/success.png)
+![success](/path_planning_figure/success.png)
 
 ### 5. discussion:
 
