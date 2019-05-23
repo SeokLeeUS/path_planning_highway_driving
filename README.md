@@ -196,4 +196,5 @@ if ((weightfactor1 < weightfactor2)&& (abs(weightfactor1 - weightfactor2) > weig
                   }
 ```
 - Learned a lot on c++ coding, but still a lot more to go.... Practice by looking at other's efficient code will help. 
+- at the moment, the code only allows the lane change when it gets closer to the front vehicle within 30m range. I think it would be okay to project 50m or more if there's vehicle, then it's not a bad idea to make a lane change earlier to the empty lane. 
 
