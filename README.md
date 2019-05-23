@@ -182,6 +182,20 @@ each corner case displays the flag (lane_flag) to know where the logic is staged
                   }
 
 ```
-## 4. result:
+### 4. result:
 
-![FSM_transition_function](/path_planning_figure/FSM_transition_function.png)
+![FSM_transition_function](/path_planning_figure/success.png)
+
+### 5. discussion:
+
+- The code is not efficient for certain. I need to modify it more readable and efficient by learning more on c++. 
+- There are certain unexpected scenarios where the vehicle is surrounded by 3 vehicles (each lane blocks my car), then my vehicle tends to make a steer where it shouldn't be. I need to adjust the weight factor toleratnce (weight_tol, see the below code snippet) to keep the lane by offsetting the weight factor difference from my lane to prevent unexpected lane change... 
+```
+if ((weightfactor1 < weightfactor2)&& (abs(weightfactor1 - weightfactor2) > weight_tol))
+                  {
+                    lane = 1;
+                    lane_flag = 11;
+                  }
+```
+- Learned a lot on c++ coding, but still a lot more to go.... Practice by looking at other's efficient code will help. 
+
