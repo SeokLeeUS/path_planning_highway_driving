@@ -77,9 +77,9 @@ if (prev_size > 0)
 
 
 ## Skill gap
-1. finite state machine 
-2. cost function 
-3. how to utilize Finite State Machine (FSM) (or cost function) for lane change maneuver when necessary. 
+1. Finite State Machine (FSM) 
+2. Cost function 
+3. How to utilize Finite State Machine (FSM) (or cost function) for lane change maneuver when necessary. 
 
 ## References:
 
@@ -88,8 +88,6 @@ if (prev_size > 0)
 ![FSM strength_weakness](/path_planning_figure/finite_state_machine.png)
 ![FSM_highway](/path_planning_figure/finite_state_machine_highway.png)
 ![FSM_transition_function](/path_planning_figure/FSM_transition_function.png)
-
-
 
 ### 2. Cost function: 
 ![FSM_cost_function_speed](/path_planning_figure/FSM_cost_func_speed_penalty.png)
@@ -105,3 +103,85 @@ if (prev_size > 0)
 |3|Penalizes trajectories that exceed the speed limit|
 |4|Penalizes trajectories that do not stay near the center of the lane. 
 |5|Rewards trajectories that stay near the target lane. 
+
+### 3. work flow (after picking up some ideas from Udacity):
+
+- a. Cost function (weight factor): compute weight factor (cost function) per lane. 
+As I know "d" value from sensor fusion data, when a "d" projects if there's a vehicle in front of my car, determine weight factor to penalize (closer to zero is good sign for lane change, the larger, the danger to make a lane change) by looking the distance ("s") and target speed difference. Here is an example of weight factor calculation block:
+```
+if (lane_1) 
+            {
+              double vx = sensor_fusion[i][3];
+              double vy = sensor_fusion[i][4];
+              double check_speed = sqrt(vx * vx + vy * vy);
+              double check_car_f = sensor_fusion[i][5];
+              double check_car_b = sensor_fusion[i][5];
+              check_car_f += ((double)prev_size * .02 * check_speed); // project next s point 
+              check_car_b -= ((double)prev_size * .02 * check_speed); //car behind
+              // checking gap between front/back cars
+              if ((check_car_f>car_s)&&((check_car_f-car_s)>f_g)||((check_car_b<car_s)&&(car_s-check_car_b)>r_g))  
+              {
+                dist_cost = exp(-abs((check_car_f-car_s)/30));
+                weightfactor1  = abs((target_speed-check_speed)/target_speed) + dist_cost; // move to lane 0
+
+              }
+              else
+              {
+                weightfactor1 = 1.0;
+              }
+            }
+```
+
+- b. Finite State Machine (FSM): FSM logic works in this way. Determine if there's a vehicle in front of my car within a calibratible range (30 m by default) in a lane, then create nested if-else if- else statement to consider if it's okay to steer left or right for lane change. Otherwise, keep the lane. The decision factor is driven by the pre-calculated weighting factor. As an example (see the below code snippet), when the vehicle is in the middle lane (lane_1), but my car approaches to the front vehicle, check the weight factor of each lane, the lane showing the least weight factor is the next lane the vehicle make a move. 
+
+```
+ if ((lane == 1) && (!lane_0) && (!lane_2))
+                {
+                  //weightfactor1 = designated_wf;
+                  if ((weightfactor0 < weightfactor2) && (abs(weightfactor0 - weightfactor2) > weight_tol))
+                  {
+                    lane = 0;
+                    lane_flag = 0;
+                  }
+                  else if ((weightfactor0 > weightfactor2) && (abs(weightfactor0 - weightfactor2)>weight_tol))
+                  {
+                    lane = 2;
+                    lane_flag = 1;
+                  }
+                  else if ((weightfactor0 == 1) && (weightfactor2 == 1)) // dummy testing 
+                  {
+                    lane = 1;
+                    lane_flag = 1.1;
+                  }
+                  else
+                  {
+                    lane = 1;
+                    lane_flag = 99999;
+                  }
+                }
+```
+- c. troubleshooting:
+print out command used to display essential information:
+
+```
+            cout << "cl:"<<too_close<<",ln: "<<lane<<",d: "<<d<<",l_f:"<<lane_flag<<",L0: "<<lane_0<<",L2: "<<lane_2<<",L1:"<<lane_1<<",wf: "<<"["<<weightfactor0<<","<<weightfactor1<<","<<weightfactor2<<"]"<<"end_d: "<<end_path_d<<endl;
+```
+
+each corner case displays the flag (lane_flag) to know where the logic is staged at which state:
+
+```
+   else if ((weightfactor1 == 0) &&(weightfactor2 ==0)) // dummy rare corner case
+                  {
+                    lane = 1;
+                    lane_flag = 11.1;
+                  }
+                  else
+                  {
+                    lane = 2;
+                    lane_flag = 12;
+                  }
+
+```
+## 4. result:
+
+![FSM_transition_function](/path_planning_figure/FSM_transition_function.png)
