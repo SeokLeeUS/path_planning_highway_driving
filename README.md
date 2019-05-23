@@ -161,14 +161,11 @@ if (lane_1)
                 }
 ```
 - c. troubleshooting:
-print out command used to display essential information:
+print out command used to display essential information.each corner case displays the flag (lane_flag) to know where the logic is staged at which state:
 
 ```
             cout << "cl:"<<too_close<<",ln: "<<lane<<",d: "<<d<<",l_f:"<<lane_flag<<",L0: "<<lane_0<<",L2: "<<lane_2<<",L1:"<<lane_1<<",wf: "<<"["<<weightfactor0<<","<<weightfactor1<<","<<weightfactor2<<"]"<<"end_d: "<<end_path_d<<endl;
 ```
-
-each corner case displays the flag (lane_flag) to know where the logic is staged at which state:
-
 ```
    else if ((weightfactor1 == 0) &&(weightfactor2 ==0)) // dummy rare corner case
                   {
